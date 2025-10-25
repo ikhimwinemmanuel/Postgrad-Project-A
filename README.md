@@ -2,37 +2,40 @@
 
 This repository contains the code, processed data, and figures for my postgraduate project evaluating three abstractive summarisation models (**LED**, **PEGASUS**, and **T5**) on scientific papers from arXiv (cs.AI and cs.LG).
 
-## Repository Structure
 
+## Repository Structure
+```text
+POSTGRADUATE_PROJECT_A/
 ├─ data/
-│ ├─ processed/ # Processed CSVs used in results
-│ │ ├─ led_table_15.csv
-│ │ ├─ pegasus_table_15.csv
-│ │ ├─ t5_table_15.csv
-│ │ ├─ rouge_summary.csv
-│ │ ├─ bertscore_summary.csv
-│ │ ├─ topk_summary.csv
-│ │ ├─ efficiency_summary.csv
-│ │ ├─ topk_per_paper_LED.csv
-│ │ ├─ topk_per_paper_PEGASUS.csv
-│ │ └─ topk_per_paper_T5.csv
-├─ figures/ # Publication-ready plots
-│ ├─ rouge_scores_bar.png
-│ ├─ bertscore_scores_bar.png
-│ └─ topk_summary_bar.png
+│  └─ processed/
+│     ├─ led_table_15.csv
+│     ├─ pegasus_table_15.csv
+│     ├─ t5_table_15.csv
+│     ├─ rouge_summary.csv
+│     ├─ bertscore_summary.csv
+│     ├─ topk_summary.csv
+│     ├─ efficiency_summary.csv
+│     ├─ topk_per_paper_LED.csv
+│     ├─ topk_per_paper_PEGASUS.csv
+│     └─ topk_per_paper_T5.csv
+├─ figures/
+│  ├─ rouge_scores_bar.png
+│  ├─ bertscore_scores_bar.png
+│  └─ topk_summary_bar.png
 ├─ src/
-│ ├─ df_build_and_save_15.py
-│ ├─ Compute_ROUGE_on_your_15.py
-│ ├─ rouge_summary_plot.py
-│ ├─ Compute_BERTScore_on_your_15.py
-│ ├─ bertscore_summary_plot.py
-│ ├─ Compute_TopK_Final.py
-│ ├─ topk_summary_plot.py
-│ ├─ Compute_Efficiency_Summary.py
-│ └─ data_collection/ # Scripts for dataset preparation
-│ ├─ collect_arxiv.py
-│ ├─ select_fixed25.py
-│ └─ run_summary_with_HF_model.py
+│  ├─ df_build_and_save_15.py
+│  ├─ Compute_ROUGE_on_your_15.py
+│  ├─ rouge_summary_plot.py
+│  ├─ Compute_BERTScore_on_your_15.py
+│  ├─ bertscore_summary_plot.py
+│  ├─ Compute_TopK_Final.py
+│  ├─ topk_summary_plot.py
+│  ├─ Compute_Efficiency_Summary.py
+│  └─ data_collection/
+│     ├─ collect_arxiv.py
+│     ├─ select_fixed25.py
+│     └─ run_summary_with_HF_model.py
+
 
 ## Usage / Reproducing Results
 
