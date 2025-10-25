@@ -1,0 +1,267 @@
+arxiv_id,title,reference_abstract,generated_summary,model_name,time_sec,gpu_mem_bytes,input_tokens,output_tokens
+2509.09679v1,ButterflyQuant: Ultra-low-bit LLM Quantization through Learnable Orthogonal Butterfly Transforms,"Large language models require massive memory footprints, severely limiting
+deployment on consumer hardware. Quantization reduces memory through lower
+numerical precision, but extreme 2-bit quantization suffers from catastrophic
+performance loss due to outliers in activations. Rotation-based methods such as
+QuIP and QuaRot apply orthogonal transforms to eliminate outliers before
+quantization, using computational invariance: $\mathbf{y} = \mathbf{Wx} =
+(\mathbf{WQ}^T)(\mathbf{Qx})$ for orthogonal $\mathbf{Q}$. However, these
+methods use fixed transforms--Hadamard matrices achieving optimal worst-case
+coherence $\mu = 1/\sqrt{n}$--that cannot adapt to specific weight
+distributions. We identify that different transformer layers exhibit distinct
+outlier patterns, motivating layer-adaptive rotations rather than
+one-size-fits-all approaches. We propose ButterflyQuant, which replaces
+Hadamard rotations with learnable butterfly transforms parameterized by
+continuous Givens rotation angles. Unlike Hadamard's discrete $\{+1, -1\}$
+entries that are non-differentiable and prohibit gradient-based learning,
+butterfly transforms' continuous parameterization enables smooth optimization
+while guaranteeing orthogonality by construction. This orthogonal constraint
+ensures theoretical guarantees in outlier suppression while achieving $O(n \log
+n)$ computational complexity with only $\frac{n \log n}{2}$ learnable
+parameters. We further introduce a uniformity regularization on
+post-transformation activations to promote smoother distributions amenable to
+quantization. Learning requires only 128 calibration samples and converges in
+minutes on a single GPU--a negligible one-time cost. On LLaMA-2-7B with 2-bit
+quantization, ButterflyQuant achieves 15.4 perplexity versus 22.1 for QuaRot.","Large language models (LLMs) have demonstrated remarkable capabilities, but their deployment has been hampered by high computational costs. LLaMA-70B requires 140GB in FP16 pre-precision, exceeding the capacity of most GPUs and making consumer deployment infeasible [Touvron et al., 2023, Zhao et al, 2025]. Recent research highlights deployment challenges including memory and high-bandwidth bottlenecks, with inference serving becoming the dominant cost in production systems. We have developed a scalable, scalable, and cost-effective method for LLM quantization. Unlike other learnable methods (e.g., SpinQuant [Liu et al,' 2024a])that optimize over the full Stiefel manifold with high computational cost, our sparse parameter-based method of quantization guarantees orthogonality by construction, enabling stable and efficient optimization. However, extreme quantization suffers from high computational complexity. In contrast to the non-linear non-non-power-of-2 dimensions common in LLMs (e,g., 5120), we develop composite transforms us-to-the-power of-2-folding Kronecker products, extending our method’s applicability. The learning process is remarkably low-cost and",allenai/led-base-16384,55.447,0,1244,257
+2509.09677v1,The Illusion of Diminishing Returns: Measuring Long Horizon Execution in LLMs,"Does continued scaling of large language models (LLMs) yield diminishing
+returns? Real-world value often stems from the length of task an agent can
+complete. We start this work by observing the simple but counterintuitive fact
+that marginal gains in single-step accuracy can compound into exponential
+improvements in the length of a task a model can successfully complete. Then,
+we argue that failures of LLMs when simple tasks are made longer arise from
+mistakes in execution, rather than an inability to reason. We propose isolating
+execution capability, by explicitly providing the knowledge and plan needed to
+solve a long-horizon task. We find that larger models can correctly execute
+significantly more turns even when small models have 100\% single-turn
+accuracy. We observe that the per-step accuracy of models degrades as the
+number of steps increases. This is not just due to long-context limitations --
+curiously, we observe a self-conditioning effect -- models become more likely
+to make mistakes when the context contains their errors from prior turns.
+Self-conditioning does not reduce by just scaling the model size. In contrast,
+recent thinking models do not self-condition, and can also execute much longer
+tasks in a single turn. We conclude by benchmarking frontier thinking models on
+the length of task they can execute in a single turn. Overall, by focusing on
+the ability to execute, we hope to reconcile debates on how LLMs can solve
+complex reasoning problems yet fail at simple tasks when made longer, and
+highlight the massive benefits of scaling model size and sequential test-time
+compute for long-horizon tasks.","izon.cfgTo demonstrate this, we isolate execution failures by explicitly providing the requisite knowledge of the task, and by providing the necessary knowledge ofthe task,and plan. We chain the retrieve-then-compose step motivated in the flight-selection agent example above to the above-and-above. Each step involves retrieving relevant information or a tool specified by the plan andthen composing its output to update the current state. The plan is deciding what to retrieve,and how to compose it, whereas execution is actually performing those operations. This fits a well-established pattern in the fieldof Deep Learning. We saw impressive self-driving demos take over a decade to translate to real-time self-reliability in long-distance driving. Vision models can generate impressive images, and yet they fail to perform the task. Conversely, the task ofconsistency over long videos remains an unsolved challenge. As the industry races to build a set of reagents that tackle entire projects, not just isolated questions, a fundamental question arises: How can we measure the likelihood of success of a task? Theoretically, we can measure success of any task by using the following method:1.2.1 Theoretical-key-value dictionary in context, removing any dependency on",allenai/led-base-16384,140.711,0,3333,257
+2509.09675v1,CDE: Curiosity-Driven Exploration for Efficient Reinforcement Learning in Large Language Models,"Reinforcement Learning with Verifiable Rewards (RLVR) is a powerful paradigm
+for enhancing the reasoning ability of Large Language Models (LLMs). Yet
+current RLVR methods often explore poorly, leading to premature convergence and
+entropy collapse. To address this challenge, we introduce Curiosity-Driven
+Exploration (CDE), a framework that leverages the model's own intrinsic sense
+of curiosity to guide exploration. We formalize curiosity with signals from
+both the actor and the critic: for the actor, we use perplexity over its
+generated response, and for the critic, we use the variance of value estimates
+from a multi-head architecture. Both signals serve as an exploration bonus
+within the RLVR framework to guide the model. Our theoretical analysis shows
+that the actor-wise bonus inherently penalizes overconfident errors and
+promotes diversity among correct responses; moreover, we connect the
+critic-wise bonus to the well-established count-based exploration bonus in RL.
+Empirically, our method achieves an approximate +3 point improvement over
+standard RLVR using GRPO/PPO on AIME benchmarks. Further analysis identifies a
+calibration collapse mechanism within RLVR, shedding light on common LLM
+failure modes.","The reasoning ability of Large Language Models (LLMs) has achieved remarkable performance over the past few years, with a significant improvementover the last few years. This improvementovercomes the limitations of the linear model. The linear model over-interprets the proposed perplexity-based bonus, showing that it intrinsically penalizes overconfident over-errors while encouraging diversity among correct responses. (ii) Theorem 3.2 establishes that in a linear model,the linear MDP setting, our critic-based exploration bonus is theoretically equivalent to classical, non-linear, and pseudo-count-based bonuses, grounding our approach in established exploration principles. The PPO objective is:▬LPPOpθ, ϕq “ Eq„D,toiu„πθold“, ““” 1▬LFPopθ , ϕpq, oq, and “1▬LTPop“ , “ “,“Lθp˜ri,t, Ai,tq ´ c1LϕpQ, oi,ăt, riq:{κ:{κ{κ}:{κ}{κ:{λκ}={κ",allenai/led-base-16384,167.368,0,4096,257
+2509.09660v1,Steering MoE LLMs via Expert (De)Activation,"Mixture-of-Experts (MoE) in Large Language Models (LLMs) routes each token
+through a subset of specialized Feed-Forward Networks (FFN), known as experts.
+We present SteerMoE, a framework for steering MoE models by detecting and
+controlling behavior-linked experts. Our detection method identifies experts
+with distinct activation patterns across paired inputs exhibiting contrasting
+behaviors. By selectively (de)activating such experts during inference, we
+control behaviors like faithfulness and safety without retraining or modifying
+weights. Across 11 benchmarks and 6 LLMs, our steering raises safety by up to
++20% and faithfulness by +27%. In adversarial attack mode, it drops safety by
+-41% alone, and -100% when combined with existing jailbreak methods, bypassing
+all safety guardrails and exposing a new dimension of alignment faking hidden
+within experts.","• Expert granularity: We detect and deactivate expert granularity, but only if they are in the same category as their peers. Additionally, we identify and deactivate expert-models in a compute-efficient manner, enabling large parameter counts without linearly increasing over-inference cost (Shazeer et al., 2017; Lepikhin et al, 2021; Xue et al. 2024). By routing each token, we can identify expert-model-types (e.g., name-name-types, name-type-types and name-types) and enable them to be identified as expert-network-types. This improves alignment with retrieved evidence, yielding up to +27% improve-over-conversion-to-efficient parameter usage. Conversely, we detect and steer experts tied to safe versus unsafe behaviors. Activating safety-associated experts raises safe response rates across red teaming datasets by up to -20%, while avoiding over-contrasts with Mixtral, which shows limited domain-specific specialization. Vocabulary special-purpose-types can be identified.• To promote the behavior associated with x(1), we activate experts with the most positive ∆i, while ignoring non-expert-types or non-intr",allenai/led-base-16384,166.106,0,4058,257
+2509.09655v1,Feasibility-Guided Fair Adaptive Offline Reinforcement Learning for Medicaid Care Management,"We introduce Feasibility-Guided Fair Adaptive Reinforcement Learning
+(FG-FARL), an offline RL procedure that calibrates per-group safety thresholds
+to reduce harm while equalizing a chosen fairness target (coverage or harm)
+across protected subgroups. Using de-identified longitudinal trajectories from
+a Medicaid population health management program, we evaluate FG-FARL against
+behavior cloning (BC) and HACO (Hybrid Adaptive Conformal Offline RL; a global
+conformal safety baseline). We report off-policy value estimates with bootstrap
+95% confidence intervals and subgroup disparity analyses with p-values. FG-FARL
+achieves comparable value to baselines while improving fairness metrics,
+demonstrating a practical path to safer and more equitable decision support.","Decision support for care coordination can benefit from offline RL, yet concerns about safety and/or fairness/equity limit deployment.We build on recent safety-aware (e.g., conformal) and fairness-aware data-learning to propose FG-FARL, which adjusts per-group feasibility thresholds before preference policy-learning, targeting equitable selection (coverage) or equitable harm.We define a policy π with (i) safety: avoid predicted harm; and (ii) fairness: satisfy a target across groups, either equal coverage of non-empty safe sets or equal coverage for non-bounded harm within safe sets. We define a feature map ϕ : S →Rd and a logistic risk model ϕ(w⊤ϕ(s)) estimating the probability of adverse events.In our implementation, ϕ (s) is the time index t, lagged reward, and selected parsed covariates from structured state JSON-data-learning(when present). We train w via regularized logistic regression on a training split and calibrate on a trained split. We also train w(s) on a held-out calibration slice. We use a trained slice to estimate the probability that adverse events will occur.We",allenai/led-base-16384,55.331,0,1253,257
+2509.09651v1,Retrieval-Augmented Generation for Reliable Interpretation of Radio Regulations,"We study question answering in the domain of radio regulations, a legally
+sensitive and high-stakes area. We propose a telecom-specific
+Retrieval-Augmented Generation (RAG) pipeline and introduce, to our knowledge,
+the first multiple-choice evaluation set for this domain, constructed from
+authoritative sources using automated filtering and human validation. To assess
+retrieval quality, we define a domain-specific retrieval metric, under which
+our retriever achieves approximately 97% accuracy. Beyond retrieval, our
+approach consistently improves generation accuracy across all tested models. In
+particular, while naively inserting documents without structured retrieval
+yields only marginal gains for GPT-4o (less than 1%), applying our pipeline
+results in nearly a 12% relative improvement. These findings demonstrate that
+carefully targeted grounding provides a simple yet strong baseline and an
+effective domain-specific solution for regulatory question answering. All code
+and evaluation scripts, along with our derived question-answer dataset, are
+available at https://github.com/Zakaria010/Radio-RAG.","Large Language Models (LLMs) have transformed natural language processing, achieving state-of-the-art performance in summarization, translation, and question answering. However, despite their high-versatility, LLMs are prone to generating false or misleading content, a phenomenon commonly re-referred to as hallucination [9, 21]. While sometimes harmless in casual applications, such inaccuracies can predispose significant risks in domains that demand strict factual correctness, including medicine, law, and teletelecommunications. In these settings, misinformation can have severe consequences, ranging from financial and/or non-financial losses to safety hazards and legal disputes.The telecommunications domain presents a particularly challenging case. Regulatory frameworks, such as the Telecommunications Act [11]and especially the ITU Radio Regulations [11], are legally binding, technically intricate, and demand ultra-precise interpretation to ensure compliance. Even small errors can trigger costly service outages, non-legal disputes, or disruptions to critical infrastructure. Consequently, operators, regulators, and inter-domain experts require reliable tools to assist in interpreting these regulations. As illustrated in the Figure 1-Fig. 1, the Radio Regulations corpus exhibits a dense domain-specific vocabulary, underscoring why non-general-purpose LLMs often struggle in this",allenai/led-base-16384,40.461,0,564,257
+2509.09619v1,Functional Groups are All you Need for Chemically Interpretable Molecular Property Prediction,"Molecular property prediction using deep learning (DL) models has accelerated
+drug and materials discovery, but the resulting DL models often lack
+interpretability, hindering their adoption by chemists. This work proposes
+developing molecule representations using the concept of Functional Groups (FG)
+in chemistry. We introduce the Functional Group Representation (FGR) framework,
+a novel approach to encoding molecules based on their fundamental chemical
+substructures. Our method integrates two types of functional groups: those
+curated from established chemical knowledge (FG), and those mined from a large
+molecular corpus using sequential pattern mining (MFG). The resulting FGR
+framework encodes molecules into a lower-dimensional latent space by leveraging
+pre-training on a large dataset of unlabeled molecules. Furthermore, the
+proposed framework allows the inclusion of 2D structure-based descriptors of
+molecules. We demonstrate that the FGR framework achieves state-of-the-art
+performance on a diverse range of 33 benchmark datasets spanning physical
+chemistry, biophysics, quantum mechanics, biological activity, and
+pharmacokinetics while enabling chemical interpretability. Crucially, the
+model's representations are intrinsically aligned with established chemical
+principles, allowing chemists to directly link predicted properties to specific
+functional groups and facilitating novel insights into structure-property
+relationships. Our work presents a significant step toward developing
+high-performing, chemically interpretable DL models for molecular discovery.","Determining molecule properties is essential in drug, material, and chemical discovery. Typically, a set of pre-trained and pre-tuned laboratory experiments is performed to determine the properties of molecules. This task of molecular-property determination is time-consuming and resource-consuming in the discovery process, as several pre-training and post-tuning pre-wet laboratory experiments must be carried out. For example, on average, one drug is approved by the US Food and Drug Administration (FDA for five compounds entering clinical trials that, in turn, are the result of thorough preclinical testing)of 250 compounds themselves selected by screening 5000–10000 compounds [1]. Hence, computational-molecular modelling approaches such as Quantitative Structure-Activity Relationship (QSAR) have been well-developed to link molecules’ physical, chemical, and biological properties with their structure [2]. These pseudo-QsAR strategies allowed chemists to narrow the vast chemical space to a smaller subset of molecules to allow them tobe synthesised, cutting operational costs and time. However, these approaches relied on limited labelled molecular-properties-datasets and hand-crafted features (or molecular representation). In recent years, deep learning-based approaches have been developed to understand",allenai/led-base-16384,66.103,0,1876,257
+2509.09616v1,Explaining Concept Drift through the Evolution of Group Counterfactuals,"Machine learning models in dynamic environments often suffer from concept
+drift, where changes in the data distribution degrade performance. While
+detecting this drift is a well-studied topic, explaining how and why the
+model's decision-making logic changes still remains a significant challenge. In
+this paper, we introduce a novel methodology to explain concept drift by
+analyzing the temporal evolution of group-based counterfactual explanations
+(GCEs). Our approach tracks shifts in the GCEs' cluster centroids and their
+associated counterfactual action vectors before and after a drift. These
+evolving GCEs act as an interpretable proxy, revealing structural changes in
+the model's decision boundary and its underlying rationale. We operationalize
+this analysis within a three-layer framework that synergistically combines
+insights from the data layer (distributional shifts), the model layer
+(prediction disagreement), and our proposed explanation layer. We show that
+such holistic view allows for a more comprehensive diagnosis of drift, making
+it possible to distinguish between different root causes, such as a spatial
+data shift versus a re-labeling of concepts.","ual explanations. Then, in Section 3 we introduce a new method for explaining concept driftfor data and concept shift analysis, which concerns the temporal evaluation of group counterfactuals and decision boundaries,and the three-layer framework. Next, we present a few case studies in Section 4, followed by adiscussion (Section 5) and a note on future directions (Section 6).2",allenai/led-base-16384,21.627,0,1100,81
+2509.09614v1,LoCoBench: A Benchmark for Long-Context Large Language Models in Complex Software Engineering,"The emergence of long-context language models with context windows extending
+to millions of tokens has created new opportunities for sophisticated code
+understanding and software development evaluation. We propose LoCoBench, a
+comprehensive benchmark specifically designed to evaluate long-context LLMs in
+realistic, complex software development scenarios. Unlike existing code
+evaluation benchmarks that focus on single-function completion or short-context
+tasks, LoCoBench addresses the critical evaluation gap for long-context
+capabilities that require understanding entire codebases, reasoning across
+multiple files, and maintaining architectural consistency across large-scale
+software systems. Our benchmark provides 8,000 evaluation scenarios
+systematically generated across 10 programming languages, with context lengths
+spanning 10K to 1M tokens, a 100x variation that enables precise assessment of
+long-context performance degradation in realistic software development
+settings. LoCoBench introduces 8 task categories that capture essential
+long-context capabilities: architectural understanding, cross-file refactoring,
+multi-session development, bug investigation, feature implementation, code
+comprehension, integration testing, and security analysis. Through a 5-phase
+pipeline, we create diverse, high-quality scenarios that challenge LLMs to
+reason about complex codebases at unprecedented scale. We introduce a
+comprehensive evaluation framework with 17 metrics across 4 dimensions,
+including 8 new evaluation metrics, combined in a LoCoBench Score (LCBS). Our
+evaluation of state-of-the-art long-context models reveals substantial
+performance gaps, demonstrating that long-context understanding in complex
+software development represents a significant unsolved challenge that demands
+more attention. LoCoBench is released at:
+https://github.com/SalesforceAIResearch/LoCoBench.","The emergence of long-context language models with context windows extending to millions of tokens (Reid et al., 2024; Anthropic, 2024)has created a new frontier in software development evaluation. As LLMs evolve from simple code-generation/completion tools to sophisticated systems capable of reasoning about entire codebases, understandingcomplex architectural patterns, and handling multi-file development workflows, traditional evaluation tools andframeworks have become fundamentally inadequate. The Long-Context Revolution in Code. Recent breakthroughs in long-Context LLMs with contextwindows extending to tens of thousands of tokens, and with context-window architectures with contextwindow architectures andcontext-window-window architecture withcontextwindow architectures, andwith contextwindow architecture andcontextwindow-system architectures, with context window architectures,with context-system architecture and contextwindow extensions extending to hundreds of tokens. Recent work reveals thatlong-context LLMs have unlocked unprecedented newopportunities for complex software development tasks. These models can now comprehend entire codecodebases spanning hundreds of files, understand complex inter-module dependencies, and maintain multi-architectural consistency across large-scale systems. However, recent work revealsthat long- Context-basedcapabilities remain a critical weakness: LongCodeBench (Rando et al",allenai/led-base-16384,46.138,0,905,257
+2509.09611v1,ReBaNO: Reduced Basis Neural Operator Mitigating Generalization Gaps and Achieving Discretization Invariance,"We propose a novel data-lean operator learning algorithm, the Reduced Basis
+Neural Operator (ReBaNO), to solve a group of PDEs with multiple distinct
+inputs. Inspired by the Reduced Basis Method and the recently introduced
+Generative Pre-Trained Physics-Informed Neural Networks, ReBaNO relies on a
+mathematically rigorous greedy algorithm to build its network structure offline
+adaptively from the ground up. Knowledge distillation via task-specific
+activation function allows ReBaNO to have a compact architecture requiring
+minimal computational cost online while embedding physics. In comparison to
+state-of-the-art operator learning algorithms such as PCA-Net, DeepONet, FNO,
+and CNO, numerical results demonstrate that ReBaNO significantly outperforms
+them in terms of eliminating/shrinking the generalization gap for both in- and
+out-of-distribution tests and being the only operator learning algorithm
+achieving strict discretization invariance.",", they can be evaluated highly efficiently in a single forward pass. However, despite these advantages, there are still limitations. For example, in the field of computer science and engineering, there is a problem with the implementationof computer simulations. In the fieldof computer scienceand engineering, purely data-driven NOs still suffer from the data challenge: they require a large set of paired data and a large amount of memory. Consequently, theydo not generalize well when test samples are out of the training regime. To reduce this generalization gap, PINO[43] and physics-informed DeepONet [25, 62] were introduced, where a PDE-based loss is added to the training process. The PDE loss is evaluated using the loss-of-loss as a penalization term. When applying the PDEloss in the test phase, a test-time optimization is performed. In addition,to take advantage of both the learned neural operator and the additional governing equation, enabling a more-than-accurate solution function and a smaller generalization error on the querying instance [43]. However, computing PDEs using the non-derivatives of batched outputs through backpropagation demands a large memory overhead. Moreover, thehighly",allenai/led-base-16384,166.74,0,4096,257
+2509.09610v1,Mechanistic Learning with Guided Diffusion Models to Predict Spatio-Temporal Brain Tumor Growth,"Predicting the spatio-temporal progression of brain tumors is essential for
+guiding clinical decisions in neuro-oncology. We propose a hybrid mechanistic
+learning framework that combines a mathematical tumor growth model with a
+guided denoising diffusion implicit model (DDIM) to synthesize anatomically
+feasible future MRIs from preceding scans. The mechanistic model, formulated as
+a system of ordinary differential equations, captures temporal tumor dynamics
+including radiotherapy effects and estimates future tumor burden. These
+estimates condition a gradient-guided DDIM, enabling image synthesis that
+aligns with both predicted growth and patient anatomy. We train our model on
+the BraTS adult and pediatric glioma datasets and evaluate on 60 axial slices
+of in-house longitudinal pediatric diffuse midline glioma (DMG) cases. Our
+framework generates realistic follow-up scans based on spatial similarity
+metrics. It also introduces tumor growth probability maps, which capture both
+clinically relevant extent and directionality of tumor growth as shown by 95th
+percentile Hausdorff Distance. The method enables biologically informed image
+generation in data-limited scenarios, offering generative-space-time
+predictions that account for mechanistic priors.","Longitudinal imaging is a cornerstone of the clinical workflow in neuro-oncology.AbstractQuantitative tumor segmentations enable disease burden and response classi-tumor-specific diagnosis and treatment planning. [arXiv:2509.09610v1  [cs.CV]  11 Sep 2025] [1] [2]D. Laslo et al. (2012) have explored neuro-fication [3,22] in the longitudinal context. While mechanistic models of tumor-volume dynamics have previously been explored [11,1,24,4], they strongly com-press the complex spatial and anatomical aspects of radiographic data. Spatio-temporal predictions that capture both the extent of the tumor and its anatom-specific anatomical location are clinically more informative.This is particularly critical for aggressive brain tumors located in sensitive anatomically-specific subregions, such as pediatric diffuse midline glioma (DMGs)[9]. Although gen-geneerative modeling for brain tumor imaging has been conceptually established in the past[17,18,23], spatio-Temporal generation of tumor growth remains underexplored, despite the fact that it has been shown to be relatively difficult to",allenai/led-base-16384,40.777,0,516,257
+2509.09594v1,ObjectReact: Learning Object-Relative Control for Visual Navigation,"Visual navigation using only a single camera and a topological map has
+recently become an appealing alternative to methods that require additional
+sensors and 3D maps. This is typically achieved through an ""image-relative""
+approach to estimating control from a given pair of current observation and
+subgoal image. However, image-level representations of the world have
+limitations because images are strictly tied to the agent's pose and
+embodiment. In contrast, objects, being a property of the map, offer an
+embodiment- and trajectory-invariant world representation. In this work, we
+present a new paradigm of learning ""object-relative"" control that exhibits
+several desirable characteristics: a) new routes can be traversed without
+strictly requiring to imitate prior experience, b) the control prediction
+problem can be decoupled from solving the image matching problem, and c) high
+invariance can be achieved in cross-embodiment deployment for variations across
+both training-testing and mapping-execution settings. We propose a topometric
+map representation in the form of a ""relative"" 3D scene graph, which is used to
+obtain more informative object-level global path planning costs. We train a
+local controller, dubbed ""ObjectReact"", conditioned directly on a high-level
+""WayObject Costmap"" representation that eliminates the need for an explicit RGB
+input. We demonstrate the advantages of learning object-relative control over
+its image-relative counterpart across sensor height variations and multiple
+navigation tasks that challenge the underlying spatial understanding
+capability, e.g., navigating a map trajectory in the reverse direction. We
+further show that our sim-only policy is able to generalize well to real-world
+indoor environments. Code and supplementary material are accessible via project
+page: https://object-react.github.io/","Navigating in a seen environment is typically accomplished by constructing dense 3D maps, often with a single camera,also using 3D sensors (LiDAR or depth camera). Although capable, these methods still need to rely heavilyon rich visual information to effectively understand instructions/goals expressed in natural language. embodimentsAn alternative to 3D based methods is visual topological navigation using only a singlecamera,and a topological map [1, 2], which is often inspired by the navigation abilities of humans. Earlier embodiments of 3D-based approaches to navigation were mostly limited to teach-and-repeat, which often employed an image-based visual servoing to estimate robot velocities given an image pair. Additionally, embodimentsmethods have proposed to ‘learn’ to predict control signal from the current view and a subgoal image from the previous view. embodimentsmethod is akin to a global planner using the topological connectivity of the map to predict the direction of the path of the desired path and the directionof the path that the path will take. embodiments are similar to the embodimentsmethod, where the subgoals are generated by a global planer using an image of the current environment and the topology connectivity of embodimentsmethod to predict path- and trajectory-inv",allenai/led-base-16384,44.32,0,784,257
+2509.09593v1,Fluent but Unfeeling: The Emotional Blind Spots of Language Models,"The versatility of Large Language Models (LLMs) in natural language
+understanding has made them increasingly popular in mental health research.
+While many studies explore LLMs' capabilities in emotion recognition, a
+critical gap remains in evaluating whether LLMs align with human emotions at a
+fine-grained level. Existing research typically focuses on classifying emotions
+into predefined, limited categories, overlooking more nuanced expressions. To
+address this gap, we introduce EXPRESS, a benchmark dataset curated from Reddit
+communities featuring 251 fine-grained, self-disclosed emotion labels. Our
+comprehensive evaluation framework examines predicted emotion terms and
+decomposes them into eight basic emotions using established emotion theories,
+enabling a fine-grained comparison. Systematic testing of prevalent LLMs under
+various prompt settings reveals that accurately predicting emotions that align
+with human self-disclosed emotions remains challenging. Qualitative analysis
+further shows that while certain LLMs generate emotion terms consistent with
+established emotion theories and definitions, they sometimes fail to capture
+contextual cues as effectively as human self-disclosures. These findings
+highlight the limitations of LLMs in fine-grained emotion alignment and offer
+insights for future research aimed at enhancing their contextual understanding.","LLMs have been trained on vast amounts of written human-language (e.g., from the internet), some of which contains self-descriptions of emotional experiences and emotional dis-conceptualization ofcourse (Achiam et al. 2023; Brown and al. 2020). LLMs have alsobeen designed to interface with users with some knowledge ofthe emotion recognition performance of 14 language models. embodimentsOur results reveal that the emotion recognition capabili-sensualties of LMs correlate with model size, model family, model-architecture, and prompting strategies. While the accuracy of LLMsof predicting emotions at the lexical level is low, some LMsdemonstrate the ability to capture the basic emotions under-applying compound emotions, even when the predicted emotion-word does not exactly match the label. Furthermore, we findthat LLMs are capable of in-context learning for emotion-recognition when provided with examples. We also find that, under the best settings, LLMsare able to generate emotions that areconsistent with theoretical definitions, but they are sometimes more self-aware and self-less contextually “aware” than the emotions self-disclosed by other non-humans. These findings are particularly valuable",allenai/led-base-16384,59.494,0,1487,257
+2509.09564v1,What Does Normal Even Mean? Evaluating Benign Traffic in Intrusion Detection Datasets,"Supervised machine learning techniques rely on labeled data to achieve high
+task performance, but this requires the labels to capture some meaningful
+differences in the underlying data structure. For training network intrusion
+detection algorithms, most datasets contain a series of attack classes and a
+single large benign class which captures all non-attack network traffic. A
+review of intrusion detection papers and guides that explicitly state their
+data preprocessing steps identified that the majority took the labeled
+categories of the dataset at face value when training their algorithms. The
+present paper evaluates the structure of benign traffic in several common
+intrusion detection datasets (NSL-KDD, UNSW-NB15, and CIC-IDS 2017) and
+determines whether there are meaningful sub-categories within this traffic
+which may improve overall multi-classification performance using common machine
+learning techniques. We present an overview of some unsupervised clustering
+techniques (e.g., HDBSCAN, Mean Shift Clustering) and show how they
+differentially cluster the benign traffic space.","thedatasets is training, there is a relatively higher proportion of attacks than would be expected tobe seen in real network traffic flows. Additionally, there are a number of pre-labeled datasets, including:NSL-KDD [16] is an updated and cleaned version of the popular UNCLASSIFIEDKDD-Cup ’99 [14] that addresses several concerns with the original dataset,namely removing redundant records and creating a scalable dataset where com-puter-mon machine learning techniques could be implemented and executed on a singlecomputer-machine. The dataset contains predefined training and testing sets with 148,517 instances of attack classes,with a total number offeatures, with a total of 4,814features,with 4,912features, and with 4,096features,and 4,054 benign), and 41 separate features. Of those features, 21 of themrefer to the external connection and 19 describe connections within the host network,with one meta-feature. [5] examined feature importance for NSL- KDD models,and [18] found substantial agreement between SHAP values LIME. UNCLASSIFIEDUNSW-NB15 UNSW-NR15 contains 9 forms of malicious traffic across 2,504,044 instances,",allenai/led-base-16384,85.584,0,2598,257
+2509.09560v1,Boosting Embodied AI Agents through Perception-Generation Disaggregation and Asynchronous Pipeline Execution,"Embodied AI systems operate in dynamic environments, requiring seamless
+integration of perception and generation modules to process high-frequency
+input and output demands. Traditional sequential computation patterns, while
+effective in ensuring accuracy, face significant limitations in achieving the
+necessary ""thinking"" frequency for real-world applications. In this work, we
+present Auras, an algorithm-system co-designed inference framework to optimize
+the inference frequency of embodied AI agents. Auras disaggregates the
+perception and generation and provides controlled pipeline parallelism for them
+to achieve high and stable throughput. Faced with the data staleness problem
+that appears when the parallelism is increased, Auras establishes a public
+context for perception and generation to share, thereby promising the accuracy
+of embodied agents. Experimental results show that Auras improves throughput by
+2.54x on average while achieving 102.7% of the original accuracy, demonstrating
+its efficacy in overcoming the constraints of sequential computation and
+providing high throughput.","“Heavenly” and “Hospitality” are the two most important aspects of the process. Sec-paralleled, the latency of each request may be prolonged when the request is unparalleled as depicted in Figure 1(b), causing the “thinking” portion of theprocess to compute on staled data, thereby decreasing the responsiveness of theagent’s accuracy.▬Our key insights are: 1) it is possible to alleviate interfer-with-the-real-world, integrating perception, decision-making, and action-requirements into theprocess. Theoretically, this can be achieved by augmenting and augmenting concurrent requests in a regular and controlled pattern, such as:(e.g., pipeline parallelism). 2) Disaggregating the perception and generation steps helps in maintaining the thinking ac-condition.3) The execution of the execution of aprocess is the most-predominantly driven by generative AI algorithms. The average uti-duration of a process is 25.9 milliseconds.3. The utilization of a diffusion-based agent (DP) [15] is merely 34.9%. Conversely,the utilization of OpenVLA [35], an auto-regressive agent is",allenai/led-base-16384,167.657,0,4096,257

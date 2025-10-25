@@ -1,0 +1,16 @@
+arxiv_id,title,paper_score_topk_mean,ref_sent_count_m,gen_sent_count_n,k_min_mn,model
+2509.09679v1,ButterflyQuant: Ultra-low-bit LLM Quantization through Learnable Orthogonal Butterfly Transforms,0.6609416007995605,11,3,3,T5
+2509.09677v1,The Illusion of Diminishing Returns: Measuring Long Horizon Execution in LLMs,0.6599358916282654,12,3,3,T5
+2509.09675v1,CDE: Curiosity-Driven Exploration for Efficient Reinforcement Learning in Large Language Models,0.6098363399505615,8,2,2,T5
+2509.09660v1,Steering MoE LLMs via Expert (De)Activation,0.6333597898483276,6,2,2,T5
+2509.09655v1,Feasibility-Guided Fair Adaptive Offline Reinforcement Learning for Medicaid Care Management,0.4804827868938446,4,3,3,T5
+2509.09651v1,Retrieval-Augmented Generation for Reliable Interpretation of Radio Regulations,0.36066028475761414,7,3,3,T5
+2509.09619v1,Functional Groups are All you Need for Chemically Interpretable Molecular Property Prediction,0.6594737768173218,9,3,3,T5
+2509.09616v1,Explaining Concept Drift through the Evolution of Group Counterfactuals,0.7772808074951172,7,3,3,T5
+2509.09614v1,LoCoBench: A Benchmark for Long-Context Large Language Models in Complex Software Engineering,0.8132429122924805,9,3,3,T5
+2509.09611v1,ReBaNO: Reduced Basis Neural Operator Mitigating Generalization Gaps and Achieving Discretization Invariance,0.6526319980621338,4,3,3,T5
+2509.09610v1,Mechanistic Learning with Guided Diffusion Models to Predict Spatio-Temporal Brain Tumor Growth,0.6298818588256836,8,3,3,T5
+2509.09594v1,ObjectReact: Learning Object-Relative Control for Visual Navigation,0.7163624167442322,10,3,3,T5
+2509.09593v1,Fluent but Unfeeling: The Emotional Blind Spots of Language Models,0.5711345672607422,8,3,3,T5
+2509.09564v1,What Does Normal Even Mean? Evaluating Benign Traffic in Intrusion Detection Datasets,0.8068895936012268,5,3,3,T5
+2509.09560v1,Boosting Embodied AI Agents through Perception-Generation Disaggregation and Asynchronous Pipeline Execution,0.5896695256233215,6,3,3,T5

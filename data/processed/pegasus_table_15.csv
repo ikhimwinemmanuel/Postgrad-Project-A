@@ -1,0 +1,267 @@
+arxiv_id,title,reference_abstract,generated_summary,model_name,time_sec,gpu_mem_bytes,input_tokens,output_tokens
+2509.09679v1,ButterflyQuant: Ultra-low-bit LLM Quantization through Learnable Orthogonal Butterfly Transforms,"Large language models require massive memory footprints, severely limiting
+deployment on consumer hardware. Quantization reduces memory through lower
+numerical precision, but extreme 2-bit quantization suffers from catastrophic
+performance loss due to outliers in activations. Rotation-based methods such as
+QuIP and QuaRot apply orthogonal transforms to eliminate outliers before
+quantization, using computational invariance: $\mathbf{y} = \mathbf{Wx} =
+(\mathbf{WQ}^T)(\mathbf{Qx})$ for orthogonal $\mathbf{Q}$. However, these
+methods use fixed transforms--Hadamard matrices achieving optimal worst-case
+coherence $\mu = 1/\sqrt{n}$--that cannot adapt to specific weight
+distributions. We identify that different transformer layers exhibit distinct
+outlier patterns, motivating layer-adaptive rotations rather than
+one-size-fits-all approaches. We propose ButterflyQuant, which replaces
+Hadamard rotations with learnable butterfly transforms parameterized by
+continuous Givens rotation angles. Unlike Hadamard's discrete $\{+1, -1\}$
+entries that are non-differentiable and prohibit gradient-based learning,
+butterfly transforms' continuous parameterization enables smooth optimization
+while guaranteeing orthogonality by construction. This orthogonal constraint
+ensures theoretical guarantees in outlier suppression while achieving $O(n \log
+n)$ computational complexity with only $\frac{n \log n}{2}$ learnable
+parameters. We further introduce a uniformity regularization on
+post-transformation activations to promote smoother distributions amenable to
+quantization. Learning requires only 128 calibration samples and converges in
+minutes on a single GPU--a negligible one-time cost. On LLaMA-2-7B with 2-bit
+quantization, ButterflyQuant achieves 15.4 perplexity versus 22.1 for QuaRot.","In this paper, we show how rotation-based methods for outlier quantization can overcome memory bottlenecks in large language models.",google/pegasus-xsum,17.57,0,512,26
+2509.09677v1,The Illusion of Diminishing Returns: Measuring Long Horizon Execution in LLMs,"Does continued scaling of large language models (LLMs) yield diminishing
+returns? Real-world value often stems from the length of task an agent can
+complete. We start this work by observing the simple but counterintuitive fact
+that marginal gains in single-step accuracy can compound into exponential
+improvements in the length of a task a model can successfully complete. Then,
+we argue that failures of LLMs when simple tasks are made longer arise from
+mistakes in execution, rather than an inability to reason. We propose isolating
+execution capability, by explicitly providing the knowledge and plan needed to
+solve a long-horizon task. We find that larger models can correctly execute
+significantly more turns even when small models have 100\% single-turn
+accuracy. We observe that the per-step accuracy of models degrades as the
+number of steps increases. This is not just due to long-context limitations --
+curiously, we observe a self-conditioning effect -- models become more likely
+to make mistakes when the context contains their errors from prior turns.
+Self-conditioning does not reduce by just scaling the model size. In contrast,
+recent thinking models do not self-condition, and can also execute much longer
+tasks in a single turn. We conclude by benchmarking frontier thinking models on
+the length of task they can execute in a single turn. Overall, by focusing on
+the ability to execute, we hope to reconcile debates on how LLMs can solve
+complex reasoning problems yet fail at simple tasks when made longer, and
+highlight the massive benefits of scaling model size and sequential test-time
+compute for long-horizon tasks.","In our latest paper, we show how scaling model size can lead to exponential gains over long-horizon tasks.",google/pegasus-xsum,15.397,0,512,24
+2509.09675v1,CDE: Curiosity-Driven Exploration for Efficient Reinforcement Learning in Large Language Models,"Reinforcement Learning with Verifiable Rewards (RLVR) is a powerful paradigm
+for enhancing the reasoning ability of Large Language Models (LLMs). Yet
+current RLVR methods often explore poorly, leading to premature convergence and
+entropy collapse. To address this challenge, we introduce Curiosity-Driven
+Exploration (CDE), a framework that leverages the model's own intrinsic sense
+of curiosity to guide exploration. We formalize curiosity with signals from
+both the actor and the critic: for the actor, we use perplexity over its
+generated response, and for the critic, we use the variance of value estimates
+from a multi-head architecture. Both signals serve as an exploration bonus
+within the RLVR framework to guide the model. Our theoretical analysis shows
+that the actor-wise bonus inherently penalizes overconfident errors and
+promotes diversity among correct responses; moreover, we connect the
+critic-wise bonus to the well-established count-based exploration bonus in RL.
+Empirically, our method achieves an approximate +3 point improvement over
+standard RLVR using GRPO/PPO on AIME benchmarks. Further analysis identifies a
+calibration collapse mechanism within RLVR, shedding light on common LLM
+failure modes.",Reinforcement learning (RL) has emerged as one of the most promising areas of research in computer science.,google/pegasus-xsum,13.686,0,512,24
+2509.09660v1,Steering MoE LLMs via Expert (De)Activation,"Mixture-of-Experts (MoE) in Large Language Models (LLMs) routes each token
+through a subset of specialized Feed-Forward Networks (FFN), known as experts.
+We present SteerMoE, a framework for steering MoE models by detecting and
+controlling behavior-linked experts. Our detection method identifies experts
+with distinct activation patterns across paired inputs exhibiting contrasting
+behaviors. By selectively (de)activating such experts during inference, we
+control behaviors like faithfulness and safety without retraining or modifying
+weights. Across 11 benchmarks and 6 LLMs, our steering raises safety by up to
++20% and faithfulness by +27%. In adversarial attack mode, it drops safety by
+-41% alone, and -100% when combined with existing jailbreak methods, bypassing
+all safety guardrails and exposing a new dimension of alignment faking hidden
+within experts.","In this paper, we investigate the routing patterns of expert- per- s**t language models (GPT-OSS) and explore their potential as an actionable interface for machine learning research.",google/pegasus-xsum,21.951,0,512,41
+2509.09655v1,Feasibility-Guided Fair Adaptive Offline Reinforcement Learning for Medicaid Care Management,"We introduce Feasibility-Guided Fair Adaptive Reinforcement Learning
+(FG-FARL), an offline RL procedure that calibrates per-group safety thresholds
+to reduce harm while equalizing a chosen fairness target (coverage or harm)
+across protected subgroups. Using de-identified longitudinal trajectories from
+a Medicaid population health management program, we evaluate FG-FARL against
+behavior cloning (BC) and HACO (Hybrid Adaptive Conformal Offline RL; a global
+conformal safety baseline). We report off-policy value estimates with bootstrap
+95% confidence intervals and subgroup disparity analyses with p-values. FG-FARL
+achieves comparable value to baselines while improving fairness metrics,
+demonstrating a practical path to safer and more equitable decision support.","An artificial intelligence (AI) system for Medicaid population health management (FG-FARL) learns a policy from logged data, enforces per-state safety, and satisfies fairness targets across protected groups.",google/pegasus-xsum,21.848,0,512,42
+2509.09651v1,Retrieval-Augmented Generation for Reliable Interpretation of Radio Regulations,"We study question answering in the domain of radio regulations, a legally
+sensitive and high-stakes area. We propose a telecom-specific
+Retrieval-Augmented Generation (RAG) pipeline and introduce, to our knowledge,
+the first multiple-choice evaluation set for this domain, constructed from
+authoritative sources using automated filtering and human validation. To assess
+retrieval quality, we define a domain-specific retrieval metric, under which
+our retriever achieves approximately 97% accuracy. Beyond retrieval, our
+approach consistently improves generation accuracy across all tested models. In
+particular, while naively inserting documents without structured retrieval
+yields only marginal gains for GPT-4o (less than 1%), applying our pipeline
+results in nearly a 12% relative improvement. These findings demonstrate that
+carefully targeted grounding provides a simple yet strong baseline and an
+effective domain-specific solution for regulatory question answering. All code
+and evaluation scripts, along with our derived question-answer dataset, are
+available at https://github.com/Zakaria010/Radio-RAG.","In this paper, we present a novel approach to improve the accuracy of automated regulatory interpretation in the telecommunications domain.",google/pegasus-xsum,14.036,0,506,25
+2509.09619v1,Functional Groups are All you Need for Chemically Interpretable Molecular Property Prediction,"Molecular property prediction using deep learning (DL) models has accelerated
+drug and materials discovery, but the resulting DL models often lack
+interpretability, hindering their adoption by chemists. This work proposes
+developing molecule representations using the concept of Functional Groups (FG)
+in chemistry. We introduce the Functional Group Representation (FGR) framework,
+a novel approach to encoding molecules based on their fundamental chemical
+substructures. Our method integrates two types of functional groups: those
+curated from established chemical knowledge (FG), and those mined from a large
+molecular corpus using sequential pattern mining (MFG). The resulting FGR
+framework encodes molecules into a lower-dimensional latent space by leveraging
+pre-training on a large dataset of unlabeled molecules. Furthermore, the
+proposed framework allows the inclusion of 2D structure-based descriptors of
+molecules. We demonstrate that the FGR framework achieves state-of-the-art
+performance on a diverse range of 33 benchmark datasets spanning physical
+chemistry, biophysics, quantum mechanics, biological activity, and
+pharmacokinetics while enabling chemical interpretability. Crucially, the
+model's representations are intrinsically aligned with established chemical
+principles, allowing chemists to directly link predicted properties to specific
+functional groups and facilitating novel insights into structure-property
+relationships. Our work presents a significant step toward developing
+high-performing, chemically interpretable DL models for molecular discovery.",A novel deep learning-based method for predicting the molecular properties of molecules has been developed.,google/pegasus-xsum,12.375,0,512,20
+2509.09616v1,Explaining Concept Drift through the Evolution of Group Counterfactuals,"Machine learning models in dynamic environments often suffer from concept
+drift, where changes in the data distribution degrade performance. While
+detecting this drift is a well-studied topic, explaining how and why the
+model's decision-making logic changes still remains a significant challenge. In
+this paper, we introduce a novel methodology to explain concept drift by
+analyzing the temporal evolution of group-based counterfactual explanations
+(GCEs). Our approach tracks shifts in the GCEs' cluster centroids and their
+associated counterfactual action vectors before and after a drift. These
+evolving GCEs act as an interpretable proxy, revealing structural changes in
+the model's decision boundary and its underlying rationale. We operationalize
+this analysis within a three-layer framework that synergistically combines
+insights from the data layer (distributional shifts), the model layer
+(prediction disagreement), and our proposed explanation layer. We show that
+such holistic view allows for a more comprehensive diagnosis of drift, making
+it possible to distinguish between different root causes, such as a spatial
+data shift versus a re-labeling of concepts.","In this paper, we provide an intuitive explanation of how a variety of methods to explain machine learning models differ from one another.",google/pegasus-xsum,15.244,0,512,27
+2509.09614v1,LoCoBench: A Benchmark for Long-Context Large Language Models in Complex Software Engineering,"The emergence of long-context language models with context windows extending
+to millions of tokens has created new opportunities for sophisticated code
+understanding and software development evaluation. We propose LoCoBench, a
+comprehensive benchmark specifically designed to evaluate long-context LLMs in
+realistic, complex software development scenarios. Unlike existing code
+evaluation benchmarks that focus on single-function completion or short-context
+tasks, LoCoBench addresses the critical evaluation gap for long-context
+capabilities that require understanding entire codebases, reasoning across
+multiple files, and maintaining architectural consistency across large-scale
+software systems. Our benchmark provides 8,000 evaluation scenarios
+systematically generated across 10 programming languages, with context lengths
+spanning 10K to 1M tokens, a 100x variation that enables precise assessment of
+long-context performance degradation in realistic software development
+settings. LoCoBench introduces 8 task categories that capture essential
+long-context capabilities: architectural understanding, cross-file refactoring,
+multi-session development, bug investigation, feature implementation, code
+comprehension, integration testing, and security analysis. Through a 5-phase
+pipeline, we create diverse, high-quality scenarios that challenge LLMs to
+reason about complex codebases at unprecedented scale. We introduce a
+comprehensive evaluation framework with 17 metrics across 4 dimensions,
+including 8 new evaluation metrics, combined in a LoCoBench Score (LCBS). Our
+evaluation of state-of-the-art long-context models reveals substantial
+performance gaps, demonstrating that long-context understanding in complex
+software development represents a significant unsolved challenge that demands
+more attention. LoCoBench is released at:
+https://github.com/SalesforceAIResearch/LoCoBench.",This paper describes a new evaluation framework for long-context language models ( LLMs) that can comprehend large codebases and complex software development tasks.,google/pegasus-xsum,16.707,0,512,31
+2509.09611v1,ReBaNO: Reduced Basis Neural Operator Mitigating Generalization Gaps and Achieving Discretization Invariance,"We propose a novel data-lean operator learning algorithm, the Reduced Basis
+Neural Operator (ReBaNO), to solve a group of PDEs with multiple distinct
+inputs. Inspired by the Reduced Basis Method and the recently introduced
+Generative Pre-Trained Physics-Informed Neural Networks, ReBaNO relies on a
+mathematically rigorous greedy algorithm to build its network structure offline
+adaptively from the ground up. Knowledge distillation via task-specific
+activation function allows ReBaNO to have a compact architecture requiring
+minimal computational cost online while embedding physics. In comparison to
+state-of-the-art operator learning algorithms such as PCA-Net, DeepONet, FNO,
+and CNO, numerical results demonstrate that ReBaNO significantly outperforms
+them in terms of eliminating/shrinking the generalization gap for both in- and
+out-of-distribution tests and being the only operator learning algorithm
+achieving strict discretization invariance.","In this paper, we introduce a new paradigm of operator learning, which aims to alleviate the computationally expensive problem of solving partial Differential Equations.",google/pegasus-xsum,15.874,0,512,29
+2509.09610v1,Mechanistic Learning with Guided Diffusion Models to Predict Spatio-Temporal Brain Tumor Growth,"Predicting the spatio-temporal progression of brain tumors is essential for
+guiding clinical decisions in neuro-oncology. We propose a hybrid mechanistic
+learning framework that combines a mathematical tumor growth model with a
+guided denoising diffusion implicit model (DDIM) to synthesize anatomically
+feasible future MRIs from preceding scans. The mechanistic model, formulated as
+a system of ordinary differential equations, captures temporal tumor dynamics
+including radiotherapy effects and estimates future tumor burden. These
+estimates condition a gradient-guided DDIM, enabling image synthesis that
+aligns with both predicted growth and patient anatomy. We train our model on
+the BraTS adult and pediatric glioma datasets and evaluate on 60 axial slices
+of in-house longitudinal pediatric diffuse midline glioma (DMG) cases. Our
+framework generates realistic follow-up scans based on spatial similarity
+metrics. It also introduces tumor growth probability maps, which capture both
+clinically relevant extent and directionality of tumor growth as shown by 95th
+percentile Hausdorff Distance. The method enables biologically informed image
+generation in data-limited scenarios, offering generative-space-time
+predictions that account for mechanistic priors.",A mechanistic learning approach for spatio-temporal generation of brain tumor growth predictions has been proposed.,google/pegasus-xsum,12.064,0,451,20
+2509.09594v1,ObjectReact: Learning Object-Relative Control for Visual Navigation,"Visual navigation using only a single camera and a topological map has
+recently become an appealing alternative to methods that require additional
+sensors and 3D maps. This is typically achieved through an ""image-relative""
+approach to estimating control from a given pair of current observation and
+subgoal image. However, image-level representations of the world have
+limitations because images are strictly tied to the agent's pose and
+embodiment. In contrast, objects, being a property of the map, offer an
+embodiment- and trajectory-invariant world representation. In this work, we
+present a new paradigm of learning ""object-relative"" control that exhibits
+several desirable characteristics: a) new routes can be traversed without
+strictly requiring to imitate prior experience, b) the control prediction
+problem can be decoupled from solving the image matching problem, and c) high
+invariance can be achieved in cross-embodiment deployment for variations across
+both training-testing and mapping-execution settings. We propose a topometric
+map representation in the form of a ""relative"" 3D scene graph, which is used to
+obtain more informative object-level global path planning costs. We train a
+local controller, dubbed ""ObjectReact"", conditioned directly on a high-level
+""WayObject Costmap"" representation that eliminates the need for an explicit RGB
+input. We demonstrate the advantages of learning object-relative control over
+its image-relative counterpart across sensor height variations and multiple
+navigation tasks that challenge the underlying spatial understanding
+capability, e.g., navigating a map trajectory in the reverse direction. We
+further show that our sim-only policy is able to generalize well to real-world
+indoor environments. Code and supplementary material are accessible via project
+page: https://object-react.github.io/","In this paper, we present a new paradigm for learning object-relative control for topological navigation of robots.",google/pegasus-xsum,13.129,0,512,23
+2509.09593v1,Fluent but Unfeeling: The Emotional Blind Spots of Language Models,"The versatility of Large Language Models (LLMs) in natural language
+understanding has made them increasingly popular in mental health research.
+While many studies explore LLMs' capabilities in emotion recognition, a
+critical gap remains in evaluating whether LLMs align with human emotions at a
+fine-grained level. Existing research typically focuses on classifying emotions
+into predefined, limited categories, overlooking more nuanced expressions. To
+address this gap, we introduce EXPRESS, a benchmark dataset curated from Reddit
+communities featuring 251 fine-grained, self-disclosed emotion labels. Our
+comprehensive evaluation framework examines predicted emotion terms and
+decomposes them into eight basic emotions using established emotion theories,
+enabling a fine-grained comparison. Systematic testing of prevalent LLMs under
+various prompt settings reveals that accurately predicting emotions that align
+with human self-disclosed emotions remains challenging. Qualitative analysis
+further shows that while certain LLMs generate emotion terms consistent with
+established emotion theories and definitions, they sometimes fail to capture
+contextual cues as effectively as human self-disclosures. These findings
+highlight the limitations of LLMs in fine-grained emotion alignment and offer
+insights for future research aimed at enhancing their contextual understanding.",Natural language processing (NLP) and artificial intelligence (AI) have been advancing the development of human language recognition ( LLMs) for many years.,google/pegasus-xsum,16.524,0,512,31
+2509.09564v1,What Does Normal Even Mean? Evaluating Benign Traffic in Intrusion Detection Datasets,"Supervised machine learning techniques rely on labeled data to achieve high
+task performance, but this requires the labels to capture some meaningful
+differences in the underlying data structure. For training network intrusion
+detection algorithms, most datasets contain a series of attack classes and a
+single large benign class which captures all non-attack network traffic. A
+review of intrusion detection papers and guides that explicitly state their
+data preprocessing steps identified that the majority took the labeled
+categories of the dataset at face value when training their algorithms. The
+present paper evaluates the structure of benign traffic in several common
+intrusion detection datasets (NSL-KDD, UNSW-NB15, and CIC-IDS 2017) and
+determines whether there are meaningful sub-categories within this traffic
+which may improve overall multi-classification performance using common machine
+learning techniques. We present an overview of some unsupervised clustering
+techniques (e.g., HDBSCAN, Mean Shift Clustering) and show how they
+differentially cluster the benign traffic space.",Intrusion detection is one of the most important areas of research in cybersecurity.,google/pegasus-xsum,17.263,0,512,17
+2509.09560v1,Boosting Embodied AI Agents through Perception-Generation Disaggregation and Asynchronous Pipeline Execution,"Embodied AI systems operate in dynamic environments, requiring seamless
+integration of perception and generation modules to process high-frequency
+input and output demands. Traditional sequential computation patterns, while
+effective in ensuring accuracy, face significant limitations in achieving the
+necessary ""thinking"" frequency for real-world applications. In this work, we
+present Auras, an algorithm-system co-designed inference framework to optimize
+the inference frequency of embodied AI agents. Auras disaggregates the
+perception and generation and provides controlled pipeline parallelism for them
+to achieve high and stable throughput. Faced with the data staleness problem
+that appears when the parallelism is increased, Auras establishes a public
+context for perception and generation to share, thereby promising the accuracy
+of embodied agents. Experimental results show that Auras improves throughput by
+2.54x on average while achieving 102.7% of the original accuracy, demonstrating
+its efficacy in overcoming the constraints of sequential computation and
+providing high throughput.","Embodied AI agents interact with the physical world, integrating perception, decision-making, and action in real-time.",google/pegasus-xsum,14.511,0,512,26

@@ -1,0 +1,4 @@
+,Avg_Runtime_sec,Peak_GPU_Memory_MB,Avg_Input_Tokens,Avg_Output_Tokens
+LED,88.26,0.0,2133.7,245.3
+PEGASUS,15.88,0.0,507.5,27.1
+T5,63.89,0.0,945.0,67.8

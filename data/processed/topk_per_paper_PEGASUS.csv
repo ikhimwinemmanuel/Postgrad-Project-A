@@ -1,0 +1,16 @@
+arxiv_id,title,paper_score_topk_mean,ref_sent_count_m,gen_sent_count_n,k_min_mn,model
+2509.09679v1,ButterflyQuant: Ultra-low-bit LLM Quantization through Learnable Orthogonal Butterfly Transforms,0.6375429630279541,11,1,1,PEGASUS
+2509.09677v1,The Illusion of Diminishing Returns: Measuring Long Horizon Execution in LLMs,0.6532553434371948,12,1,1,PEGASUS
+2509.09675v1,CDE: Curiosity-Driven Exploration for Efficient Reinforcement Learning in Large Language Models,0.6539938449859619,8,1,1,PEGASUS
+2509.09660v1,Steering MoE LLMs via Expert (De)Activation,0.6428365707397461,6,1,1,PEGASUS
+2509.09655v1,Feasibility-Guided Fair Adaptive Offline Reinforcement Learning for Medicaid Care Management,0.45416122674942017,4,1,1,PEGASUS
+2509.09651v1,Retrieval-Augmented Generation for Reliable Interpretation of Radio Regulations,0.4641139507293701,7,1,1,PEGASUS
+2509.09619v1,Functional Groups are All you Need for Chemically Interpretable Molecular Property Prediction,0.8367506861686707,9,1,1,PEGASUS
+2509.09616v1,Explaining Concept Drift through the Evolution of Group Counterfactuals,0.5374860763549805,7,1,1,PEGASUS
+2509.09614v1,LoCoBench: A Benchmark for Long-Context Large Language Models in Complex Software Engineering,0.836884617805481,9,1,1,PEGASUS
+2509.09611v1,ReBaNO: Reduced Basis Neural Operator Mitigating Generalization Gaps and Achieving Discretization Invariance,0.6284666061401367,4,1,1,PEGASUS
+2509.09610v1,Mechanistic Learning with Guided Diffusion Models to Predict Spatio-Temporal Brain Tumor Growth,0.6609726548194885,8,1,1,PEGASUS
+2509.09594v1,ObjectReact: Learning Object-Relative Control for Visual Navigation,0.6427160501480103,10,1,1,PEGASUS
+2509.09593v1,Fluent but Unfeeling: The Emotional Blind Spots of Language Models,0.5264157056808472,8,1,1,PEGASUS
+2509.09564v1,What Does Normal Even Mean? Evaluating Benign Traffic in Intrusion Detection Datasets,0.5432924628257751,5,1,1,PEGASUS
+2509.09560v1,Boosting Embodied AI Agents through Perception-Generation Disaggregation and Asynchronous Pipeline Execution,0.7453436255455017,6,1,1,PEGASUS
