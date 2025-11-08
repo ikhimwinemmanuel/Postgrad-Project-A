@@ -1,6 +1,6 @@
 # Leveraging Large Language Models for Summary/Abstract Extraction of Scientific Texts
 
-This repository contains the code, processed data, and figures for my postgraduate project evaluating three abstractive summarisation models (**LED**, **PEGASUS**, and **T5**) on scientific papers from arXiv (cs.AI and cs.LG).
+This repository contains the code, processed data, and figures for my postgraduate project evaluating three abstractive summarisation hugging face models (**LED**, **PEGASUS**, and **T5**) on scientific papers from arXiv (cs.AI and cs.LG).
 
 
 ## Repository Structure
