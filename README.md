@@ -1,6 +1,9 @@
 # Leveraging Large Language Models for Summary/Abstract Extraction of Scientific Texts
 
 This repository contains the code, processed data, and figures for my postgraduate project evaluating three abstractive summarisation hugging face models (**LED**, **PEGASUS**, and **T5**) on scientific papers from arXiv (cs.AI and cs.LG).
+## Project Report
+The full report (including methodology, results, and analysis) is available [here](docs/Leveraging_Large_Language_Models_for_Summary_Abstract_Extraction_of_Scientific_Texts.pdf).
+
 
 
 ## Repository Structure
@@ -35,7 +38,10 @@ POSTGRADUATE_PROJECT_A/
 │     ├─ collect_arxiv.py
 │     ├─ select_fixed25.py
 │     └─ run_summary_with_HF_model.py
-
+├─ docs/
+│  ├─ README.md
+│  └─ Leveraging_Large_Language_Models_for_Summary_Abstract_Extraction_of_Scientific_Texts.pdf
+└─ README.md
 
 ## Usage / Reproducing Results
 
